@@ -8,12 +8,12 @@ const socket = io.connect('http://localhost:4000')
 function App() {
   const [state, setStaet] = useState({ message: '', name: '' })
   const [chat, setChat] = useState([])
-
-  useEffect(() => {
-    socket.on('message', ({ name, message }) => {
+  
+   useEffect(() => {
+    socket.on("message", ({ name, message }) => {
       setChat([...chat, { name, message }])
     })
-  })
+  }, [state])
 
   const onTextChange = e => {
     setStaet({ ...state, [e.target.name]: e.target.value })
