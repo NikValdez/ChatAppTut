@@ -1,6 +1,10 @@
 const app = require('express')()
+const options = {
+  cors: true,
+  origins: ["http://localhost:3000"],
+};
 const http = require('http').createServer(app)
-const io = require('socket.io')(http)
+const io = require('socket.io')(http, options)
 
 io.on('connection', socket => {
   socket.on('message', ({ name, message }) => {
